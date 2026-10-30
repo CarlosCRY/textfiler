@@ -11,6 +11,7 @@ public class ReadTextFile {
     private Path filePath;
 
     public ReadTextFile(Path filePath) throws FileNotFoundException {
+        if (Files.notExists(filePath)) throw new FileNotFoundException();
         this.filePath = filePath;
     }
 
@@ -19,7 +20,7 @@ public class ReadTextFile {
     }
 
     public void setFilePath(Path filePath) throws FileNotFoundException {
-        if (Files.notExists(filePath)) throw new FileNotFoundException("El archivo no existe");
+        if (Files.notExists(filePath)) throw new FileNotFoundException();
         this.filePath = filePath;
     }
 
@@ -37,7 +38,7 @@ public class ReadTextFile {
 
     public void run() {
         try {
-            Files.readAllLines(filePath);
+            System.out.println(Files.readAllLines(filePath));
         } catch (IOException e) {
             System.out.println("Error de E/S");
         }
